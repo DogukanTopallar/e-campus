@@ -1,4 +1,4 @@
-package com.example.springsecurity.dto;
+package com.example.springsecurity.dto.Student;
 
 import lombok.Data;
 
@@ -10,3 +10,4 @@ public class StudentDto {
     private String department;
     private String faculty;
 }
+

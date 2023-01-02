@@ -1,12 +1,15 @@
 package com.example.springsecurity.services;
 
 
-import com.example.springsecurity.dto.StudentDto;
+import com.example.springsecurity.dto.Student.StudentDto;
+import com.example.springsecurity.dto.Student.UpdateStudent;
 import com.example.springsecurity.models.Student;
 import com.example.springsecurity.models.User;
 import com.example.springsecurity.repos.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,10 +38,24 @@ public class StudentService {
         studentDto.setDepartment(studentDto.getDepartment());
         studentDto.setDepartment(studentDto.getDepartment());
 
+        studentRepository.save(student);
+
         return studentDto;
     }
 
-//    public StudentDto updateStudent(StudentDto studentDto){
-//
+//    public StudentDto updateStudent(long id, UpdateStudent updateStudent){
+//        Optional<StudentDto> studentDtoOptional = studentRepository.findByUserID(id);
+//        studentDtoOptional.ifPresent(studentDto -> {
+//            studentDto.setFirstName(updateStudent.getFirstName());
+//            studentDto.setLasName(updateStudent.getLasName());
+//            studentDto.setDepartment(updateStudent.getDepartment());
+//            studentDto.setFaculty(updateStudent.getFaculty());
+//            studentDto.setStudentNo(updateStudent.getStudentNo());
+//        });
+//        return new StudentDto();
 //    }
+
+    public void deleteStudent(Long id){
+        studentRepository.deleteById(id);
+    }
 }
