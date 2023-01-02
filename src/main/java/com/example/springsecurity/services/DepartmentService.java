@@ -45,4 +45,9 @@ public class DepartmentService {
 
     }
 
+    public Department addDepartmentUsingByInstitute(Long id, Department department) {
+        department.setInstitute(instituteRepository.findById(id).orElse(null));
+        return departmentRepository.save(department);
+    }
+
 }
