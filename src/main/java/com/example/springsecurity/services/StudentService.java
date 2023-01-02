@@ -26,4 +26,19 @@ public class StudentService {
 
         return studentDto;
     }
+
+    public StudentDto createStudent(StudentDto studentDto){
+        Student student = new Student();
+        studentDto.setStudentNo(studentDto.getStudentNo());
+        studentDto.setFirstName(studentDto.getFirstName());
+        studentDto.setLasName(studentDto.getLasName());
+        studentDto.setDepartment(studentDto.getDepartment());
+        studentDto.setDepartment(studentDto.getDepartment());
+
+        return studentDto;
+    }
+
+//    public StudentDto updateStudent(StudentDto studentDto){
+//
+//    }
 }
