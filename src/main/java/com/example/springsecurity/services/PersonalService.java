@@ -3,6 +3,7 @@ package com.example.springsecurity.services;
 
 import com.example.springsecurity.dto.Personal.PersonalDto;
 import com.example.springsecurity.dto.Student.StudentDto;
+import com.example.springsecurity.models.Department;
 import com.example.springsecurity.models.Personal;
 import com.example.springsecurity.models.Student;
 import com.example.springsecurity.models.User;
@@ -10,6 +11,8 @@ import com.example.springsecurity.repos.PersonalRepository;
 import com.example.springsecurity.repos.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -48,6 +51,13 @@ public class PersonalService {
     }
 
     public void deletePersonal(Long id){personalRepository.deleteById(id);}
+
+    public List<Personal> getAllPersonal(){
+        return personalRepository.findAll();
+    }
+
+
 }
+
 
     //update yazmadım.

@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public class Personal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +23,7 @@ public class Personal {
     private String faculty;
     private String institute;
     private String title;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<UserRole> roles = new ArrayList<>();
 }

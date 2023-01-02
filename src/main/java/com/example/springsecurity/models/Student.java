@@ -1,5 +1,6 @@
 package com.example.springsecurity.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +19,14 @@ public class Student {
 
     @Column(name="user_id")
     private Long userID;
-    private String department;
-    private String faculty;
-    //...
+
+
+    @JsonIgnore
+    @ManyToOne
+    private Department department;
+
+    @JsonIgnore
+    @ManyToOne
+    private Faculty faculty;
+
 }

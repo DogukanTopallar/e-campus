@@ -9,6 +9,7 @@ import com.example.springsecurity.repos.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,8 +23,8 @@ public class StudentService {
         Student student = studentRepository.findByUserID(id);
         StudentDto studentDto = new StudentDto();
         studentDto.setStudentNo(student.getId());
-        studentDto.setDepartment(student.getDepartment());
-        studentDto.setFaculty(student.getFaculty());
+        studentDto.setDepartment(studentDto.getDepartment()); //student.getDep 'di Dto yapınca hata kalktı
+        studentDto.setFaculty(studentDto.getFaculty()); ////student.getFac 'di Dto yapınca hata kalktı
         studentDto.setLasName(user.getLastName());
         studentDto.setFirstName(user.getFirstName());
 
@@ -41,6 +42,10 @@ public class StudentService {
         studentRepository.save(student);
 
         return studentDto;
+    }
+
+    public List<Student> getAllStudent(){
+        return studentRepository.findAll();
     }
 
 //    public StudentDto updateStudent(long id, UpdateStudent updateStudent){
