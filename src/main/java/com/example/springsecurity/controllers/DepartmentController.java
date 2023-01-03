@@ -19,25 +19,25 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.getDepartment(id));
     }
 
-    @GetMapping("/department")
+    @GetMapping("/departments")
     public ResponseEntity<?> getAllDepartment()
     {
         return ResponseEntity.ok(departmentService.getAllDepartment());
     }
 
-    @PostMapping("/faculty/{id}/department")
+    @PostMapping("/faculties/{id}/department")
     @ResponseBody
-    public ResponseEntity<Department> addDepartment(@PathVariable Long id, @ResponseBody Department department){
+    public ResponseEntity<Department> addDepartment(@PathVariable Long id, @RequestBody Department department){
         return new ResponseEntity(departmentService.addDepartment(id,department), HttpStatus.CREATED);
     }
 
-    @PostMapping("/Institute/{id}/department")
+    @PostMapping("/Institutes/{id}/department")
     @ResponseBody
-    public ResponseEntity<Department> addInstitute(@PathVariable Long id, @ResponseBody Department department){
+    public ResponseEntity<Department> addInstitute(@PathVariable Long id, @RequestBody Department department){
         return new ResponseEntity(departmentService.addDepartmentUsingByInstitute(id, department), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/department/{id}")
+    @DeleteMapping("/departments/{id}")
     public ResponseEntity<Department> deleteDepartment(@PathVariable Long id){
         departmentService.deleteDepartment(id);
         return ResponseEntity.ok().build();

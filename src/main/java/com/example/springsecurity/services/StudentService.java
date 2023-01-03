@@ -23,8 +23,8 @@ public class StudentService {
         Student student = studentRepository.findByUserID(id);
         StudentDto studentDto = new StudentDto();
         studentDto.setStudentNo(student.getId());
-        studentDto.setDepartment(studentDto.getDepartment()); //student.getDep 'di Dto yapınca hata kalktı
-        studentDto.setFaculty(studentDto.getFaculty()); ////student.getFac 'di Dto yapınca hata kalktı
+        studentDto.setDepartment(student.getDepartment()); //student.getDep 'di Dto yapınca hata kalktı
+        studentDto.setFaculty(student.getFaculty()); ////student.getFac 'di Dto yapınca hata kalktı
         studentDto.setLasName(user.getLastName());
         studentDto.setFirstName(user.getFirstName());
 
