@@ -22,7 +22,7 @@ public class FacultyService {
 
     private final FacultyRepository facultyRepository;
 
-    public Faculty getFaculty(Long id){
+    public Faculty getFacultyById(Long id){
         return facultyRepository.findById(id).orElse(null);
     }
 

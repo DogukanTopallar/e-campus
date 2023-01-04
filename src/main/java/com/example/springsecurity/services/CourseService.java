@@ -1,6 +1,8 @@
 package com.example.springsecurity.services;
 
 import com.example.springsecurity.models.Course;
+import com.example.springsecurity.models.User;
+import com.example.springsecurity.models.UserRole;
 import com.example.springsecurity.repos.CourseRepository;
 import com.example.springsecurity.repos.DepartmentRepository;
 import com.example.springsecurity.repos.FacultyRepository;
@@ -27,6 +29,13 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
+//        public Course addCourseOnFacultyDepartment(Long id, Long departmentId, Course course){
+//        course.setDepartment(facultyRepository.findById(id).orElse(null));
+//        course.setDepartment(departmentRepository.findById(id).orElse(null));
+//        return courseRepository.save(course);
+//    }
+
+
     public void deleteCourse(Long id){
         courseRepository.deleteById(id);
     }
@@ -34,6 +43,5 @@ public class CourseService {
     public List<Course> getAllCourse(){
         return courseRepository.findAll();
     }
-    
 
 }

@@ -37,6 +37,8 @@ public class SecurityConfiguration {
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/login").permitAll(); //token almak için
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/users/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/users/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculties/{id}/department").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculties/{id}/department").hasAnyAuthority("ROLE_FACULTY_MANAGEMENT");
 
         http.authorizeRequests().anyRequest().authenticated();
         http.sessionManagement()

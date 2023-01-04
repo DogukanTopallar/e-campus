@@ -17,6 +17,7 @@ import java.util.List;
 public class FacultyController {
 
     private final FacultyService facultyService;
+    private final FacultyRepository facultyRepository;
 
     @GetMapping("/faculties")
     public ResponseEntity<List<Faculty>> getAllFaculty(){
@@ -25,7 +26,7 @@ public class FacultyController {
 
     @GetMapping("/faculties/{id}")
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id){
-        return ResponseEntity.ok(facultyService.getFaculty(id));
+        return ResponseEntity.ok(facultyRepository.findById(id).orElse(null));
     }
 
     @PostMapping("/faculty")
@@ -35,7 +36,7 @@ public class FacultyController {
 
     @DeleteMapping("/faculties/{id}")
     public ResponseEntity<Faculty> deleteFaculty(@PathVariable Long id){
-        facultyService.deleteFaculty(id);
+        facultyRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

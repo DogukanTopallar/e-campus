@@ -19,12 +19,12 @@ public class DepartmentService {
     public final FacultyRepository facultyRepository;
     public final InstituteRepository instituteRepository;
 
-    public Department addDepartment(Long id,Department department){
+    public Department addDepartment(Long id, Department department){
         department.setFaculty(facultyRepository.findById(id).orElse(null));
         return departmentRepository.save(department);
     }
 
-    public Department getDepartment(Long id){
+    public Department getDepartmentById(Long id){
         return departmentRepository.findById(id).orElse(null);
     }
 

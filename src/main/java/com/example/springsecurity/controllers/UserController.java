@@ -18,7 +18,6 @@ import java.net.URI;
 public class UserController {
     private final UserService userService;
     private final UserRoleService userRoleService;
-    //public final TodoListService todoListService;
 
     @GetMapping("/users")
     public ResponseEntity<?> getAllUsers()
