@@ -23,6 +23,9 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     private Collection<Student> students;
 
+    @OneToMany
+    private Collection<Course> courses = new ArrayList<>();
+
     @OneToMany(mappedBy = "faculty")
     private List<Department> departmentList = new ArrayList<>();
 }

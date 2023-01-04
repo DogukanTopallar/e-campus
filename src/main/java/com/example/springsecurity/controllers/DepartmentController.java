@@ -2,6 +2,7 @@ package com.example.springsecurity.controllers;
 
 import com.example.springsecurity.models.Department;
 
+import com.example.springsecurity.repos.DepartmentRepository;
 import com.example.springsecurity.services.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class DepartmentController {
     private final DepartmentService departmentService;
+    private final DepartmentRepository departmentRepository;
 
-    @GetMapping("/department/id")
-    public ResponseEntity<?> getDepartment(@RequestParam Long id)
-    {
+    @GetMapping("/departments/{id}")
+    public ResponseEntity<Department> getDepartment(@PathVariable Long id){
         return ResponseEntity.ok(departmentService.getDepartment(id));
     }
 
@@ -25,15 +26,16 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.getAllDepartment());
     }
 
+
     @PostMapping("/faculties/{id}/department")
     @ResponseBody
     public ResponseEntity<Department> addDepartment(@PathVariable Long id, @RequestBody Department department){
-        return new ResponseEntity(departmentService.addDepartment(id,department), HttpStatus.CREATED);
+        return new ResponseEntity(departmentService.addDepartment(id, department), HttpStatus.CREATED);
     }
 
-    @PostMapping("/Institutes/{id}/department")
+    @PostMapping("/institutes/{id}/department")
     @ResponseBody
-    public ResponseEntity<Department> addInstitute(@PathVariable Long id, @RequestBody Department department){
+    public ResponseEntity<Department> addDepartmentUsingByInstitute(@PathVariable Long id, @RequestBody Department department){
         return new ResponseEntity(departmentService.addDepartmentUsingByInstitute(id, department), HttpStatus.CREATED);
     }
 

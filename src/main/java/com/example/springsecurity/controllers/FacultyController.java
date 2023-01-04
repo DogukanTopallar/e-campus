@@ -2,6 +2,7 @@ package com.example.springsecurity.controllers;
 
 import com.example.springsecurity.models.Faculty;
 import com.example.springsecurity.models.User;
+import com.example.springsecurity.repos.FacultyRepository;
 import com.example.springsecurity.services.FacultyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,16 +28,21 @@ public class FacultyController {
         return ResponseEntity.ok(facultyService.getFaculty(id));
     }
 
-//    @PostMapping("/faculty")
-//    public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty){
-//        return ResponseEntity.ok(facultyService.addFaculty(faculty));
-//    }
-
-    @PostMapping("/faculties")
+    @PostMapping("/faculty")
     public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users").toUriString());
-        Faculty new_faculty = facultyService.addFaculty(faculty);
-        System.out.println(new_faculty);
-        return ResponseEntity.created(uri).body(new_faculty);
+        return ResponseEntity.ok(facultyService.addFaculty(faculty));
     }
+
+    @DeleteMapping("/faculties/{id}")
+    public ResponseEntity<Faculty> deleteFaculty(@PathVariable Long id){
+        facultyService.deleteFaculty(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/faculties/{id}")
+    public ResponseEntity<Faculty> updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty){
+        return ResponseEntity.ok(facultyService.updateFaculty(id,faculty));
+    }
+
+
 }

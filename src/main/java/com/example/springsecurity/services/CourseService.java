@@ -18,7 +18,7 @@ public class CourseService {
     private final FacultyRepository facultyRepository;
     private final StudentRepository studentRepository;
 
-    public Course getCourse(Long id){
+    public Course getCourseById(Long id){
         return  courseRepository.findById(id).get();
     }
 

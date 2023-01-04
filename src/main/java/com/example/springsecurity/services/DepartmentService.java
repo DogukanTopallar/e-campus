@@ -19,7 +19,7 @@ public class DepartmentService {
     public final FacultyRepository facultyRepository;
     public final InstituteRepository instituteRepository;
 
-    public Department addDepartment(Long id, Department department){
+    public Department addDepartment(Long id,Department department){
         department.setFaculty(facultyRepository.findById(id).orElse(null));
         return departmentRepository.save(department);
     }
@@ -40,7 +40,7 @@ public class DepartmentService {
         return departmentRepository.findById(departmentId).orElse(null).getStudents();
     }
 
-    public Collection<Course> allCourses(Long departmentId) {
+    public Collection<Course> getAllCourses(Long departmentId) {
         return departmentRepository.findById(departmentId).orElse(null).getCourses();
 
     }
