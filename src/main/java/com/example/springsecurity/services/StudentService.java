@@ -25,7 +25,7 @@ public class StudentService {
         studentDto.setStudentNo(student.getId());
         studentDto.setDepartment(student.getDepartment()); //student.getDep 'di Dto yapınca hata kalktı
         studentDto.setFaculty(student.getFaculty()); ////student.getFac 'di Dto yapınca hata kalktı
-        studentDto.setLasName(user.getLastName());
+        studentDto.setLastName(user.getLastName());
         studentDto.setFirstName(user.getFirstName());
 
         return studentDto;
@@ -35,7 +35,7 @@ public class StudentService {
         Student student = new Student();
         studentDto.setStudentNo(studentDto.getStudentNo());
         studentDto.setFirstName(studentDto.getFirstName());
-        studentDto.setLasName(studentDto.getLasName());
+        studentDto.setLastName(studentDto.getLastName());
         studentDto.setDepartment(studentDto.getDepartment());
 
         studentRepository.save(student);

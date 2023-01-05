@@ -32,13 +32,41 @@ public class SecurityConfiguration {
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/**").permitAll();;
+                .antMatchers("/h2-console/**").permitAll();
 
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/login").permitAll(); //token almak için
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/users/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/users/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculties/{id}/department").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculties/{id}/department").hasAnyAuthority("ROLE_FACULTY_MANAGEMENT");
+
+        //FACULTY
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculty").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/faculty/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/faculty/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT");
+
+
+        //INSTITUTE
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/institute").hasAnyAuthority("ROLE_ADMIN","ROLE_INSTITUTE_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/institute/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_INSTITUTE_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/institute/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_INSTITUTE_MANAGEMENT");
+
+
+        //DEPARTMENT
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/faculties/{id}/department").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/department/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT","ROLE_INSTITUTE_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/department/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT", "ROLE_INSTITUTE_MANAGEMENT");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/institute/{id}/department").hasAnyAuthority("ROLE_ADMIN","ROLE_INSTITUTE_MANAGEMENT");
+
+        //COURSE
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/departments/{id}/course").hasAnyAuthority("ROLE_STUDENT","ROLE_FACULTY_MANAGEMENT","ROLE_INSTITUTE_MANAGEMENT");
+
+        //PERSONAL
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/personal").hasAnyAuthority("ROLE_ADMIN");
+
+        //STUDENT
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/student").hasAnyAuthority("ROLE_ADMIN");
+
+
+
 
         http.authorizeRequests().anyRequest().authenticated();
         http.sessionManagement()

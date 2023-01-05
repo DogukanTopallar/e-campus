@@ -6,6 +6,7 @@ import com.example.springsecurity.repos.FacultyRepository;
 import com.example.springsecurity.services.FacultyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -29,17 +30,18 @@ public class FacultyController {
         return ResponseEntity.ok(facultyRepository.findById(id).orElse(null));
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
     @PostMapping("/faculty")
     public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty){
         return ResponseEntity.ok(facultyService.addFaculty(faculty));
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
     @DeleteMapping("/faculties/{id}")
     public ResponseEntity<Faculty> deleteFaculty(@PathVariable Long id){
         facultyRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
     @PutMapping("/faculties/{id}")
     public ResponseEntity<Faculty> updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty){
         return ResponseEntity.ok(facultyService.updateFaculty(id,faculty));

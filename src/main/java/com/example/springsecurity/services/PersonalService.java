@@ -37,7 +37,7 @@ public class PersonalService {
 
         return personalDto;
     }
-    public PersonalDto createPersonal(PersonalDto personalDto){
+    public PersonalDto addPersonal(PersonalDto personalDto){
         Personal personal = new Personal();
         personalDto.setPersonalNo(personalDto.getPersonalNo());
         personalDto.setFirstName(personalDto.getFirstName());

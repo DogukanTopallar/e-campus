@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StudentDto {
     private Long studentNo;
-    private String lasName;
     private String firstName;
+    private String lastName;
     private Department department;
     private Faculty faculty;
 }
