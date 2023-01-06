@@ -2,6 +2,7 @@ package com.example.springsecurity.controllers;
 
 import com.example.springsecurity.dto.Personal.PersonalDto;
 import com.example.springsecurity.dto.Student.StudentDto;
+import com.example.springsecurity.models.Personal;
 import com.example.springsecurity.services.PersonalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +23,11 @@ public class PersonalController {
     public ResponseEntity<?> getPersonal(@RequestParam Long id)
     {
         return ResponseEntity.ok(personalService.getPersonal(id));
+    }
+
+    @GetMapping("/personals")
+    public ResponseEntity<List<Personal>> getAllPersonal(){
+        return ResponseEntity.ok(personalService.getAllPersonal());
     }
 
     @Secured("ROLE_ADMIN")

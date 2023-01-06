@@ -65,6 +65,9 @@ public class SecurityConfiguration {
         //STUDENT
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/student").hasAnyAuthority("ROLE_ADMIN");
 
+        //USERS
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/allUsers").hasAnyAuthority("ROLE_ADMIN");
+
 
 
 

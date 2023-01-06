@@ -5,6 +5,7 @@ import com.example.springsecurity.dto.Student.StudentDto;
 import com.example.springsecurity.dto.Student.UpdateStudent;
 import com.example.springsecurity.models.Student;
 import com.example.springsecurity.models.User;
+import com.example.springsecurity.repos.DepartmentRepository;
 import com.example.springsecurity.repos.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class StudentService {
     public final StudentRepository studentRepository;
     public final UserService userService;
+    private final DepartmentRepository departmentRepository;
 
     public StudentDto getStudent(Long id){
         User user = userService.getUserById(id);
@@ -24,14 +26,14 @@ public class StudentService {
         StudentDto studentDto = new StudentDto();
         studentDto.setStudentNo(student.getId());
         studentDto.setDepartment(student.getDepartment()); //student.getDep 'di Dto yapınca hata kalktı
-        studentDto.setFaculty(student.getFaculty()); ////student.getFac 'di Dto yapınca hata kalktı
         studentDto.setLastName(user.getLastName());
         studentDto.setFirstName(user.getFirstName());
 
         return studentDto;
     }
 
-    public StudentDto addStudent(StudentDto studentDto){
+    public StudentDto addStudent(Long id,StudentDto studentDto){
+        studentDto.setDepartment(departmentRepository.findById(id).orElse(null));
         Student student = new Student();
         studentDto.setStudentNo(studentDto.getStudentNo());
         studentDto.setFirstName(studentDto.getFirstName());

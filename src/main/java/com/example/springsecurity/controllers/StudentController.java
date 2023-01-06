@@ -45,12 +45,18 @@ public class StudentController {
 //        return new ResponseEntity(studentService.createStudent(studentDto), HttpStatus.CREATED);
 //    }
 
+//    @Secured("ROLE_ADMIN")
+//    @PostMapping("/departments/{id}/student")
+//    public ResponseEntity<StudentDto> addStudent(@PathVariable Long id, @RequestBody StudentDto studentDto){
+//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/student").toUriString());
+//        StudentDto new_student = studentService.addStudent(studentDto);
+//        System.out.println(new_student);
+//        return ResponseEntity.created(uri).body(new_student);
+//    }
+
     @Secured("ROLE_ADMIN")
-    @PostMapping("/student")
-    public ResponseEntity<StudentDto> addStudent(@RequestBody StudentDto studentDto){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/student").toUriString());
-        StudentDto new_student = studentService.addStudent(studentDto);
-        System.out.println(new_student);
-        return ResponseEntity.created(uri).body(new_student);
+    @PostMapping("/departments/{id}/student")
+    public ResponseEntity<StudentDto> addStudent(@PathVariable Long id, @RequestBody StudentDto studentDto){
+        return new ResponseEntity(studentService.addStudent(id, studentDto), HttpStatus.CREATED);
     }
 }

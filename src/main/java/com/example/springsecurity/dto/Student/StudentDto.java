@@ -16,6 +16,6 @@ public class StudentDto {
     private String firstName;
     private String lastName;
     private Department department;
-    private Faculty faculty;
+    //private Faculty faculty;
 }
 

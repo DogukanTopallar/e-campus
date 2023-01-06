@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,12 +20,13 @@ public class UserController {
     private final UserService userService;
     private final UserRoleService userRoleService;
 
-    @GetMapping("/users")
-    public ResponseEntity<?> getAllUsers()
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/getUsers")
+    public ResponseEntity<List<User>> getAllUsers()
     {
         return ResponseEntity.ok(userService.getAllUsers());
     }
-
+    @Secured("ROLE_ADMIN")
     @PostMapping("/users")
     public ResponseEntity<User> saveUser(@RequestBody User user)
     {
