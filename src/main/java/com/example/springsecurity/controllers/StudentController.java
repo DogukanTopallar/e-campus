@@ -1,9 +1,7 @@
 package com.example.springsecurity.controllers;
 
 
-import com.example.springsecurity.dto.Student.StudentDto;
-import com.example.springsecurity.models.Faculty;
-import com.example.springsecurity.models.Student;
+import com.example.springsecurity.dto.StudentDto;
 import com.example.springsecurity.repos.StudentRepository;
 import com.example.springsecurity.services.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor

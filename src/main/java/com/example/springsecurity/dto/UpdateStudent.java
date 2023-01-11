@@ -1,4 +1,4 @@
-package com.example.springsecurity.dto.Student;
+package com.example.springsecurity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

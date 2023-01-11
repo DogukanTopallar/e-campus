@@ -28,9 +28,11 @@ public class Department {
     @ManyToOne
     private Institute institute;
 
+    @JsonIgnore //postman isteklerinde sürekli alt alta eklediği için sunumdan sonra eklendi
     @OneToMany(mappedBy = "department")
     private List<Student> students= new ArrayList<>();
 
+    @JsonIgnore //postman isteklerinde sürekli alt alta eklediği için sunumdan sonra eklendi
     @OneToMany(mappedBy = "department")
     private Collection<Course> courses=new ArrayList<>();
 }

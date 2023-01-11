@@ -21,12 +21,14 @@ public class Student {
     private Long userID;
 
 
+    //birçok öğrenci bir deparment'a bağlı olabilir
     @JsonIgnore
     @ManyToOne
     private Department department;
 
+    //birçok öğrenci tek bir fakülteye kayıtlı olabilir.
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne()
     private Faculty faculty;
 
 }

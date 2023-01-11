@@ -1,11 +1,8 @@
 package com.example.springsecurity.services;
 
 
-import com.example.springsecurity.dto.Personal.PersonalDto;
-import com.example.springsecurity.dto.Student.StudentDto;
-import com.example.springsecurity.models.Department;
+import com.example.springsecurity.dto.PersonalDto;
 import com.example.springsecurity.models.Personal;
-import com.example.springsecurity.models.Student;
 import com.example.springsecurity.models.User;
 import com.example.springsecurity.repos.PersonalRepository;
 import com.example.springsecurity.repos.StudentRepository;

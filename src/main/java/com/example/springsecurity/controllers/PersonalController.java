@@ -1,13 +1,11 @@
 package com.example.springsecurity.controllers;
 
-import com.example.springsecurity.dto.Personal.PersonalDto;
-import com.example.springsecurity.dto.Student.StudentDto;
+import com.example.springsecurity.dto.PersonalDto;
 import com.example.springsecurity.models.Personal;
 import com.example.springsecurity.services.PersonalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationEntryPoint;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
