@@ -23,8 +23,8 @@ public class StudentController {
     }
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/student/{id}")
-    public ResponseEntity<StudentDto> deleteStudent(@PathVariable Long id){
-        studentRepository.deleteById(id);
+    public ResponseEntity<StudentDto> deleteStudentById(@PathVariable Long id){
+        studentService.deleteStudentById(id);
         return ResponseEntity.ok().build();
     }
 

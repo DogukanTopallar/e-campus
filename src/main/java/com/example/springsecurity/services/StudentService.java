@@ -43,6 +43,7 @@ public class StudentService {
         return studentDto;
     }
 
+
     public List<Student> getAllStudent(){
         return studentRepository.findAll();
     }
@@ -59,7 +60,7 @@ public class StudentService {
 //        return new StudentDto();
 //    }
 
-    public void deleteStudent(Long id){
+    public void deleteStudentById(Long id){
         studentRepository.deleteById(id);
     }
 }

@@ -27,7 +27,7 @@ public class FacultyController {
 
     @GetMapping("/faculties/{id}")
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id){
-        return ResponseEntity.ok(facultyRepository.findById(id).orElse(null));
+        return ResponseEntity.ok(facultyService.getFacultyById(id));
     }
 
     @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
@@ -38,9 +38,10 @@ public class FacultyController {
     @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
     @DeleteMapping("/faculties/{id}")
     public ResponseEntity<Faculty> deleteFaculty(@PathVariable Long id){
-        facultyRepository.deleteById(id);
+        facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
+
     @Secured({"ROLE_ADMIN","ROLE_FACULTY_MANAGEMENT"})
     @PutMapping("/faculties/{id}")
     public ResponseEntity<Faculty> updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty){
